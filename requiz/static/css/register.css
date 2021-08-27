@@ -1,0 +1,52 @@
+h2, h4, h6, p{
+    text-align: center;
+}
+
+span a{
+    padding-right: 10px;
+}
+
+.container-fluid {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+#register{
+    margin-left: 25px;
+}
+
+#first_pic, #second_pic, #third_pic, #fourth_pic{
+    width: 350px;
+    height: 350px;
+}
+
+.recs{
+    display: flex;
+    place-content: center;
+}
+
+#first_rec, #second_rec{
+    display: inline-block;
+    width: 560px;
+    place-content: center;
+    height: fit-content;
+}
+
+img{
+    width: 560px;
+    height: 315px;
+    border: 0px;
+    margin-bottom: 7px;
+}
+
+#pass_word, #pw_conf{
+    height: auto;
+    display: flex;
+    place-content: center;
+    align-items:center;
+}
+
+button{
+    display: block;
+    margin: 0 auto;
+}
