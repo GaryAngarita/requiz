@@ -55,17 +55,6 @@ def start_lite(request, user_id):
     }
     return render(request, "quizlite.html", context)
 
-def addQuestion(request):
-    if request.user.is_staff:
-        if request.method == 'POST':
-            question = request.POST['question']
-            op1 = request.POST['op1']
-            op2 = request.POST['op1']
-            op3 = request.POST['op1']
-            op4 = request.POST['op1']
-            ans = request.POST['op1']
-    pass
-
 def adult_login(request):
     pass
 
@@ -96,7 +85,7 @@ def process_quiz(request):
         request.session['correct'] = correct
         request.session['wrong'] = wrong
         request.session['score'] = score
-        return redirect('/results')
+        return redirect('/kid_results')
     else:
         querys = Query.objects.all()
         context = {
