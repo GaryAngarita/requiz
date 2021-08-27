@@ -1,0 +1,1 @@
+Second attempt at creating quiz app which rewards Users in a unique way
