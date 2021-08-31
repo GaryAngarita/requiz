@@ -79,3 +79,14 @@ class Query(models.Model):
         return self.question
 
 # Create your models here.
+
+class Question(models.Model):
+    question = models.CharField(max_length=200, null=True)
+    answer = models.CharField(max_length=200, null=True)
+    option = models.ForeignKey(Option, related_name="")
+
+    def __str__(self):
+        return self.question, self.answer
+
+class Option(models.Model):
+    option = models.CharField(max_length=200, null=True)
