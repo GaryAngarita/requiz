@@ -52,26 +52,21 @@
         {% for message in messages %}
             <p>{{ message }}</p>
         {% endfor %}
-        {% for q in querys %}
+        {% for question in questions %}
         </br>
-        <label for="query">{{q.id}}. {{q.question}}</label>
+        <label for="question"> {{question.id}}. {{question.question}}</label>
+            {% for option in question.options.all %}
         <div class="form-check">
-            <input class="form-check-input" type="radio" name="{{q.question}}" id="flexRadioDefault1">
-            <label class="form-check-label" for="flexRadioDefault1">{{q.op1}}</label>
+            <h5>{{option.option}}</h5>
         </div>
-        <div class="form-check">
-            <input class="form-check-input" type="radio" name="{{q.question}}" id="flexRadioDefault1" value="op1">
-            <label class="form-check-label" for="flexRadioDefault1">{{q.op2}}</label>
+            {% endfor %}
+        <div class="row mb-3">
+            <label for="answer" class="col-sm-2 col-form-label">Type your answer here</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="answer">
+            </div>
         </div>
-        <div class="form-check">
-            <input class="form-check-input" type="radio" name="{{q.question}}" id="flexRadioDefault1" value="op1">
-            <label class="form-check-label" for="flexRadioDefault1">{{q.op3}}</label>
-        </div>
-        <div class="form-check">
-            <input class="form-check-input" type="radio" name="{{q.question}}" id="flexRadioDefault1" value="op1">
-            <label class="form-check-label" for="flexRadioDefault1">{{q.op4}}</label>
-        </div>
-        {% endfor %}
+        {% endfor %}        
         <br>
         <input id='timer' type='hidden' name="timer" value="">
         <button type="submit" class="btn btn-primary">Submit</button>

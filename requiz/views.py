@@ -51,7 +51,7 @@ def kid_login(request):
 def start_lite(request, user_id):
     context = {
         'user': KidUser.objects.get(id = user_id),
-        'querys': Query.objects.all()
+        'questions': Question.objects.all()
     }
     return render(request, "quizlite.html", context)
 
@@ -59,39 +59,43 @@ def adult_login(request):
     pass
 
 def process_quiz(request):
-    if request.method == 'POST':
-        querys = Query.objects.all()
+    if request.method == 'GET':
+        return redirect('/')
+    else:
+        questions = Question.objects.all()
         score=0
         wrong=0
         correct=0
         total=0
-        for q in querys:
+        for question in questions:
             total+=1
-            print(request.POST.get(q.question))
-            print(q.ans)
+            print(question.question)
+            print(question.answer)
             print()
-            if q.ans ==  request.POST.get(q.question):
+            if question.answer == question.user_answer:
                 score+=10
                 correct+=1
             else:
                 wrong+=1
-        percent = score/(total*10) *100
+        percent = (score/(total*10)) *100
         if percent <= 100 or percent >= 90:
             percent = 'Perfect!'
         elif percent < 90 or percent >= 80:
             percent = 'Really Well!'
+        else:
+            percent = 'not score high enough'
         request.session['percent'] = percent
         request.session['total'] = total
         request.session['correct'] = correct
         request.session['wrong'] = wrong
         request.session['score'] = score
         return redirect('/kid_results')
-    else:
-        querys = Query.objects.all()
-        context = {
-            'questions': querys
-        }
-        return render(request, 'quizlite.html', context)
+    # else:
+    #     querys = Query.objects.all()
+    #     context = {
+    #         'questions': querys
+    #     }
+    #     return render(request, 'quizlite.html', context)
 
 def kid_results(request):
     context = {

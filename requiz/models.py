@@ -67,26 +67,19 @@ class AdultUser(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     # objects = AdultUserManager()
 
-class Query(models.Model):
+class Question(models.Model):
     question = models.CharField(max_length=200, null=True)
-    op1 = models.CharField(max_length=200, null=True)
-    op2 = models.CharField(max_length=200, null=True)
-    op3 = models.CharField(max_length=200, null=True)
-    op4 = models.CharField(max_length=200, null=True)
-    ans = models.CharField(max_length=200, null=True)
+    answer = models.CharField(max_length=200, null=True)
 
     def __str__(self):
         return self.question
 
-# Create your models here.
-
-class Question(models.Model):
-    question = models.CharField(max_length=200, null=True)
-    answer = models.CharField(max_length=200, null=True)
-    option = models.ForeignKey(Option, related_name="")
-
-    def __str__(self):
-        return self.question, self.answer
-
 class Option(models.Model):
     option = models.CharField(max_length=200, null=True)
+    question = models.ForeignKey(Question, related_name="options", on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.option
+# Create your models here.
+
+
