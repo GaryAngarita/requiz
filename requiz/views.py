@@ -5,7 +5,6 @@ from django.contrib import messages
 from .models import *
 
 
-
 def cover(request):
     return render(request, "cover.html")
 
@@ -59,6 +58,7 @@ def adult_login(request):
     pass
 
 def process_quiz(request):
+    indiv_answer = request.POST['answer']
     if request.method == 'GET':
         return redirect('/')
     else:
@@ -72,11 +72,14 @@ def process_quiz(request):
             print(question.question)
             print(question.answer)
             print()
-            if question.answer == question.user_answer:
-                score+=10
-                correct+=1
-            else:
-                wrong+=1
+            print(question.indiv_answer)
+            # if request.method == 'POST':
+            #     if request.POST.items() == question.answer:
+            #         print(request.POST['answer'])
+            #         score+=10
+            #         correct+=1
+            #     else:
+            #         wrong+=1
         percent = (score/(total*10)) *100
         if percent <= 100 or percent >= 90:
             percent = 'Perfect!'
