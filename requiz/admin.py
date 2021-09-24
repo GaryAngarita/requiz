@@ -1,13 +1,32 @@
 from django.contrib import admin
 
-from .models import KidUser, AdultUser, Question, Option
+from . import models
 
-admin.site.register(KidUser)
+@admin.register(models.Category)
 
-admin.site.register(AdultUser)
+class CatAdmin(admin.ModelAdmin):
+    list_display = ['name',]
 
-admin.site.register(Question)
+@admin.register(models.Quizzes)
 
-admin.site.register(Option)
+class QuizAdmin(admin.ModelAdmin):
+    list_display = ['id', 'title',]
+
+class AnswerInlineModel(admin.TabularInline):
+    model = models.Answer
+    fields = ['answer_text', 'is_right']
+
+@admin.register(models.Question)
+
+class QuestionAdmin(admin.ModelAdmin):
+    fields = ['title', 'quiz',]
+    list_display = ['title', 'quiz', 'date_updated']
+    inlines = [AnswerInlineModel,]
+
+@admin.register(models.Answer)
+
+class AnswerAdmin(admin.ModelAdmin):
+    list_display = ['answer_text', 'is_right', 'question']
+
 
 # Register your models here.

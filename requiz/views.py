@@ -58,7 +58,6 @@ def adult_login(request):
     pass
 
 def process_quiz(request):
-    indiv_answer = request.POST['answer']
     if request.method == 'GET':
         return redirect('/')
     else:
@@ -72,7 +71,7 @@ def process_quiz(request):
             print(question.question)
             print(question.answer)
             print()
-            print(question.indiv_answer)
+            print(request.POST['answer'])
             # if request.method == 'POST':
             #     if request.POST.items() == question.answer:
             #         print(request.POST['answer'])

@@ -6,6 +6,7 @@ colorama==0.4.4
 decorator==5.0.7
 Django==2.2
 django-localflavor==3.1
+djangorestframework==3.12.4
 Flask==1.1.2
 ipython==7.22.0
 ipython-genutils==0.2.0
