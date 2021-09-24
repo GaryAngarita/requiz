@@ -1,8 +1,19 @@
 from django.core.checks import messages
+from rest_framework import generics
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from .serializers import QuizSerializer, RandomQuestionSerializer, QuestionSerializer
 from django.shortcuts import redirect, render
 import bcrypt
 from django.contrib import messages
 from .models import *
+
+class Quiz(generics.ListAPIView):
+    serializer_class = QuizSerializer
+    queryset = Quizzes.objects.all()
+
+def quiz(request):
+    pass
 
 
 def cover(request):
